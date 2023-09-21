@@ -6,6 +6,12 @@ const contenedor_login_register = document.querySelector(
 const caja_trasera_login = document.querySelector(".caja__trasera-login");
 const caja_trasera_register = document.querySelector(".caja__trasera-register");
 
+const users = JSON.parse(localStorage.getItem("users")) || [];
+
+const saveToLocalStorage = () => {
+  localStorage.setItem("users", JSON.stringify(users));
+};
+
 const iniciarSesion = () => {
   if (window.innerWidth > 850) {
     formulario_login.style.display = "block";
@@ -59,3 +65,21 @@ document
   .addEventListener("click", iniciarSesion);
 document.getElementById("btn__registrarse").addEventListener("click", register);
 window.addEventListener("resize", anchoPage);
+
+const saveUser = (username, email, password) => {
+  const user = {
+    username,
+    email,
+    password,
+  };
+
+  users.push(user);
+  saveToLocalStorage();
+};
+formulario_register.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const username = document.getElementById("register-username").value;
+  const email = document.getElementById("register-email").value;
+  const password = document.getElementById("register-password").value;
+  saveUser(username, email, password);
+});
