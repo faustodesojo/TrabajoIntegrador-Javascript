@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Licorería Desojo's</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mediaquaries.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="navbar-logo">
+          <a href="#">
+            <img src="assets/Desojo's.png" alt="logo" />
+          </a>
+          <h3><i>Desojo's</i></h3>
+        </div>
+        <ul class="navbar-list" id="navbarList">
+          <li class="navbar-link"><a href="#">Inicio</a></li>
+          <li class="navbar-link"><a href="#productos">Productos</a></li>
+          <li class="navbar-link"><a href="#contact">Contacto</a></li>
+          <div class="close-button">
+            <i class="fas fa-times"></i>
+          </div>
+        </ul>
+        <div class="user-cart">
+          <div class="user">
+            <a href="user.html">
+              <i class="fa-regular fa-user fa-xl" title="Registrarse"></i
+            ></a>
+          </div>
+          <div class="cart">
+            <i class="fas fa-shopping-cart fa-xl cart-icon"></i>
+          </div>
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+          <i class="fa-solid fa-bars fa-xl"></i>
+        </div>
+      </nav>
+      <div class="carrito">
+        <h2>Carrito de Compras</h2>
+        <div class="lista-carrito"></div>
+        <p>Total: $<span class="total">0.00</span></p>
+        <button id="comprar-carrito">Comprar</button>
+        <button id="vaciar-carrito">Vaciar Carrito</button>
+      </div>
+    </header>
+    <main>
+      <section id="hero">
+        <div class="hero-info">
+          <img src="assets/Desojo's.png" alt="Logo-local" />
+          <h1>¡Encontra tu bebidas favoritas al mejor precio!</h1>
+          <p>
+            En <span>Licoreria Desojo's</span> contamos con un amplio catalogo
+            de bebidas importadas
+          </p>
+        </div>
+        <div class="hero-container">
+          <div class="hero-entrega">
+            <i class="fa-solid fa-truck"></i>
+            <p>Envios sin cargo</p>
+            <span>Para compras mayores a $15000 en La plata y alrededores</span>
+          </div>
+          <div class="separador"></div>
+          <div class="hero-cuotas">
+            <i class="fa-regular fa-credit-card"></i>
+            <p>¡ Hasta 12 cuotas sin interes!</p>
+            <span>Con Tarjeta VISA o Mastercard</span>
+          </div>
+          <div class="separador"></div>
+          <div class="hero-mayores">
+            <i class="fa-solid fa-ban"></i>
+            <p>Venta a mayores de 18 años</p>
+            <span>Traer DNI</span>
+          </div>
+        </div>
+      </section>
+      <section id="about">
+        <div class="about__banner">
+          <img src="assets/Descuento Rutini.png" alt="" />
+          <button class="agregar descuento">Comprar</button>
+        </div>
+      </section>
+      <section id="productos" class="productos">
+        <div class="product-title">
+          <div class="separador"></div>
+          <h3>Bebidas</h3>
+          <div class="separador"></div>
+        </div>
+        <div class="cards-container">
+          <button id="boton-anterior"><i class="fa-solid fa-angle-left"></i></button>
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              <div class="productos-container"></div>
+            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
+          <button id="boton-siguiente">
+        <i class="fa-solid fa-chevron-right"></i></i>
+      </button>
+      <p id="mensaje-carrito" class="mensaje-carrito oculto"></p>
+        </div>
+      </section>
+      <section id="contact">
+        <div class="contact__text">
+          <h1>¡Contactanos!</h1>
+          <b><p>¿En que podemos ayudarte? tu opinion nos interesa!</p></b>
+        </div>
+        <div class="contact__form">
+          <form>
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" id="nombre" required />
+
+            <label for="apellido">Apellido</label>
+            <input type="text" name="apellido" id="apellido" required />
+
+            <label for="telefono">Numero telefonico</label>
+            <input type="number" name="telefono" id="telefono" required />
+
+            <label for="consulta">Cual es el motivo de su consulta?</label>
+            <select name="consulta" id="consulta" required>
+              <option value="reserva">No se realizar una compra</option>
+              <option value="consulta">Quiero consultar algo</option>
+              <option value="critica">Critica constructiva</option>
+            </select>
+
+            <label for="texto"
+              >Dejanos tu mensaje <span>- opcional</span></label
+            >
+            <textarea name="texto" id="texto" cols="20" rows="10"> </textarea>
+            <button class="enviar" type="submit">Enviar</button>
+          </form>
+        </div>
+        <a
+          class="wsp"
+          href="https://www.whatsapp.com/"
+          target="_blank"
+          title="whatsapp"
+          ><img src="assets/wsp1.png" alt="logo whatsapp"
+        /></a>
+      </section>
+      <footer id="footer">
+        <div class="footer__contacto">
+          <h3>Contacto</h3>
+          <ul>
+            <li>
+              <img src="assets/llamada.png" alt="telefono" /> (0221) 4714555
+            </li>
+            <li>
+              <img src="assets/ubicacion.png" alt="ubicacion" /> Camino Belgrano
+              2820 - La plata
+            </li>
+            <li>
+              <img src="assets/email.png" alt="email" />
+              ventas@desojos.com.ar
+            </li>
+          </ul>
+        </div>
+        <div class="navegacion">
+          <h3>Información</h3>
+          <ul>
+            <li><a href="#">¿Quienes somos?</a></li>
+            <li><a href="#">Preguntas Frecuentes</a></li>
+            <li><a href="#about">Bebidas</a></li>
+          </ul>
+        </div>
+      </footer>
+      <div class="end">
+        <p>Licoreria Desojo's - since 2020 ©</p>
+      </div>
+    </main>
+    <script src="index.js"></script>
+  </body>
+</html>
