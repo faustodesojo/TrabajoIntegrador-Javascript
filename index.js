@@ -307,3 +307,72 @@ document.addEventListener("DOMContentLoaded", () => {
 
   mostrarProductos();
 });
+
+const expresiones = {
+  usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
+  nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
+  password: /^.{4,12}$/, // 4 a 12 digitos.
+  correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+  telefono: /^\d{7,14}$/, // 7 a 14 numeros.
+};
+const validarCampos = (e) => {
+  switch (e.target.name) {
+    case "nombre":
+      validarFormulario(expresiones.usuario, e.target, "nombre");
+      break;
+    case "apellido":
+      validarFormulario(expresiones.nombre, e.target, "apellido");
+      break;
+    case "telefono":
+      break;
+  }
+};
+
+const validarFormulario = (expresion, input, campo) => {
+  if (expresion.test(input.value)) {
+    document
+      .getElementById(`input__${campo}`)
+      .classList.remove("formulario-incorrecto");
+    document
+      .getElementById(`input__${campo}`)
+      .classList.add("formulario-correcto");
+    document
+      .querySelector(`#input__${campo} .formulario__validacion-estado`)
+      .classList.add("fa-check-circle");
+    document
+      .querySelector(`#input__${campo} .formulario__validacion-estado`)
+      .classList.remove("fa-times-circle");
+    document
+      .querySelector(`#input__${campo} .formulario__error`)
+      .classList.remove("formulario__error-activo");
+    campos[campo] = true;
+  } else {
+    document
+      .getElementById(`input__${campo}`)
+      .classList.add("formulario-incorrecto");
+    document
+      .getElementById(`input__${campo}`)
+      .classList.remove("formulario-correcto");
+    document
+      .querySelector(`#input__${campo} i`)
+      .classList.add("fa-times-circle");
+    document
+      .querySelector(`#input__${campo} i`)
+      .classList.remove("fa-check-circle");
+    document
+      .querySelector(`#input__${campo} .formulario__error`)
+      .classList.add("formulario__error-activo");
+    campos[campo] = false;
+  }
+};
+
+const inputsForm = document.querySelectorAll("#formulario input");
+const formulario = document.getElementById("formulario");
+inputsForm.forEach((input) => {
+  input.addEventListener("keyup", validarCampos);
+  input.addEventListener("blur", validarCampos);
+});
+
+formulario.addEventListener("submit", (e) => {
+  e.preventDefault();
+});

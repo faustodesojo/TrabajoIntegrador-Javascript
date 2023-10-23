@@ -3,6 +3,7 @@
   --violet: rgb(63, 9, 121);
   --yellow: rgb(255, 187, 0);
   --secondary: black;
+  --error: rgb(214, 22, 22);
 }
 @import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap");
 * {
@@ -368,10 +369,11 @@ body {
 /* CONTACT SECTION */
 #contact {
   margin: 0 auto;
-  width: 80%;
-  background-color: var(--yellow);
+  width: 900px;
+  background-color: black;
   border-radius: 2em;
   margin-bottom: 50px;
+  color: white;
 }
 .contact__form input[type="number"]::-webkit-inner-spin-button,
 .contact__form input[type="number"]::-webkit-outer-spin-button {
@@ -380,9 +382,6 @@ body {
   margin: 0;
 }
 
-.contact__form {
-  width: 100%;
-}
 .contact__form form {
   width: 60%;
   margin: 0 auto;
@@ -396,7 +395,7 @@ body {
 .contact__form select,
 .contact__form option,
 .contact__form textarea {
-  width: 40%;
+  width: 100%;
   margin: 0 auto;
 }
 .contact__form .enviar {
@@ -431,8 +430,7 @@ body {
   color: black;
   margin-bottom: 25px;
 }
-.contact__form input,
-.contact__form select {
+.formulario__grupo {
   margin-bottom: 20px;
 }
 .contact__text {
@@ -470,7 +468,53 @@ body {
   transform: scale(1.1);
   transition: all 0.3s;
 }
+#formulario {
+  width: 100%;
+}
+.formulario__input {
+  background: #fff;
+  border: 3px solid transparent;
+  border-radius: 3px;
+  height: 45px;
+  line-height: 45px;
+  padding: 0 40px 0 10px;
+  transition: 0.3s ease all;
+}
+.formulario-incorrecto input {
+  border: 2px solid var(--error);
+}
+.formulario-incorrecto {
+  color: var(--error);
+}
 
+.small__nombre {
+  color: var(--error);
+}
+.oculto {
+  display: none;
+}
+.fa-check-circle {
+  color: green;
+}
+#input__nombre {
+  position: relative;
+}
+.formulario__validacion-estado {
+  position: absolute;
+  top: 4px;
+  right: 10px;
+}
+.formulario__grupos {
+  width: 500px;
+  margin: 0 auto;
+}
+.formulario__error {
+  display: none;
+}
+.formulario__error-activo {
+  display: block;
+  color: red;
+}
 /* FOOTER Section */
 footer {
   display: flex;

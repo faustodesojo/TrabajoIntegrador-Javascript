@@ -122,38 +122,43 @@
           <b><p>¿En que podemos ayudarte? tu opinion nos interesa!</p></b>
         </div>
         <div class="contact__form">
-          <form>
-            <label for="nombre">Nombre</label>
-            <input type="text" name="nombre" id="nombre" required />
-
-            <label for="apellido">Apellido</label>
-            <input type="text" name="apellido" id="apellido" required />
-
-            <label for="telefono">Numero telefonico</label>
-            <input type="number" name="telefono" id="telefono" required />
-
-            <label for="consulta">Cual es el motivo de su consulta?</label>
-            <select name="consulta" id="consulta" required>
+          <form id="formulario">
+            <div class="formulario__grupos">
+            <div class="formulario__grupo" id="input__nombre">
+                <input class="formulario__input" type="text" name="nombre" id="nombre" placeholder="Nombre" />
+                <i class="fas fa-times-circle formulario__validacion-estado"></i>
+                <small class="formulario__error">Por favor introducir un nombre valido</small>
+            </div>
+<div class="formulario__grupo"id="input__apellido">
+    <input class="formulario__input" type="text" name="apellido" id="apellido" placeholder="Apellido" />
+            <i class="fas fa-times-circle formulario__validacion-estado"></i>
+                <small class="formulario__error">Por favor introducir un apellido valido</small>
+        </div>
+<div class="formulario__grupo">
+            <input class="formulario__input" type="number" name="telefono" id="telefono" placeholder="Numero telefonico" />
+            </div>
+<div class="formulario__grupo">
+            <select name="consulta" id="consulta" place>
               <option value="reserva">No se realizar una compra</option>
               <option value="consulta">Quiero consultar algo</option>
               <option value="critica">Critica constructiva</option>
             </select>
-
-            <label for="texto"
-              >Dejanos tu mensaje <span>- opcional</span></label
-            >
+          </div>
+<div class="formulario__grupo">
+            <label for="texto">Dejanos un mensaje <span>- opcional</span></label>
             <textarea name="texto" id="texto" cols="20" rows="10"> </textarea>
             <button class="enviar" type="submit">Enviar</button>
+          </div>
           </form>
         </div>
-        <a
-          class="wsp"
-          href="https://www.whatsapp.com/"
-          target="_blank"
-          title="whatsapp"
-          ><img src="assets/wsp1.png" alt="logo whatsapp"
-        /></a>
       </section>
+      <a
+        class="wsp"
+        href="https://www.whatsapp.com/"
+        target="_blank"
+        title="whatsapp"
+        ><img src="assets/wsp1.png" alt="logo whatsapp"
+      /></a>
       <footer id="footer">
         <div class="footer__contacto">
           <h3>Contacto</h3>
