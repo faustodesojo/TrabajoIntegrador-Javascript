@@ -337,6 +337,8 @@ body {
   cursor: pointer;
   font-weight: bold;
   margin: 35px 30px;
+  width: 120px;
+  height: 40px;
 }
 
 #vaciar-carrito:hover {
