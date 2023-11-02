@@ -266,6 +266,16 @@ body {
   border-radius: 5px;
   cursor: pointer;
 }
+.carrito-titulos {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.carrito-titulos :first-child {
+  margin-right: 35px;
+}
 .carrito {
   background-color: #f2f2f2;
   text-align: center;
@@ -273,14 +283,18 @@ body {
   position: fixed;
   top: 85px;
   width: 100%;
+  max-height: 300px;
+  overflow-y: auto;
+}
+.carrito::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+.carrito::-webkit-scrollbar-thumb {
+  background-color: #888;
 }
 .carrito h2 {
   margin-bottom: 30px;
-}
-.carrito-item {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
 }
 .carrito-title {
   display: flex;
@@ -341,6 +355,7 @@ body {
 .lista-carrito .carrito-item {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 40px;
   margin-bottom: 20px;
 }

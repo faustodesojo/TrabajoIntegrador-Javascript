@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const openCarrito = () => {
     carritoContainer.classList.add("open");
-    cerrarMenu();
+    closeMenu();
   };
 
   const cerrarCarrito = () => {
@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (navList.classList.contains("active")) {
       openMenu();
     } else {
-      cerrarMenu();
+      closeMenu();
     }
   });
 
@@ -234,6 +234,8 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Compra realizada con éxito.");
       vaciarCarritoModal();
       vaciarCarritoLocalStorage();
+      carrito = [];
+      actualizarCarrito();
     }
   });
   const vaciarCarritoLocalStorage = () => {
@@ -285,8 +287,13 @@ document.addEventListener("DOMContentLoaded", () => {
       button.addEventListener("click", (event) => {
         const { target } = event;
         const nombre = target.dataset.nombre;
-        const imagen = target.dataset.img;
-        agregarProductoAlCarrito(nombre, precio, imagen);
+        const producto = cardsInfo.find((producto) => producto.name === nombre);
+
+        if (producto) {
+          const precio = producto.price;
+          const imagen = producto.cardImg;
+          agregarProductoAlCarrito(nombre, precio, imagen);
+        }
       });
     });
   });
@@ -300,16 +307,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const mostrarProductos = () => {
     productosContainer.innerHTML = "";
 
-    for (let i = currentIndex; i < currentIndex + productosPorPagina; i += 2) {
+    for (let i = currentIndex; i < currentIndex + productosPorPagina; i++) {
       if (i < cardsInfo.length) {
-        const producto1 = cardsInfo[i];
-        const card1 = crearCardProduct(producto1);
-        productosContainer.appendChild(card1);
-      }
-      if (i + 1 < cardsInfo.length) {
-        const producto2 = cardsInfo[i + 1];
-        const card2 = crearCardProduct(producto2);
-        productosContainer.appendChild(card2);
+        const producto = cardsInfo[i];
+        const card = crearCardProduct(producto);
+        productosContainer.appendChild(card);
       }
     }
   };
@@ -374,7 +376,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const expresiones = {
   usuario: /^[a-zA-Z0-9\_\-]{3,16}$/, // Letras, numeros, guion y guion_bajo
   nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-  // password: /^.{4,12}$/, // 4 a 12 digitos.
+  password: /^.{3,12}$/, // 4 a 12 digitos.
   // correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
   telefono: /^\d{7,14}$/, // 7 a 14 numeros.
 };
