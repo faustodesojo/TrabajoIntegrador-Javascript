@@ -336,7 +336,7 @@ body {
   padding: 0.5rem 1rem;
   cursor: pointer;
   font-weight: bold;
-  margin-bottom: 15px;
+  margin: 35px 30px;
 }
 
 #vaciar-carrito:hover {
@@ -352,12 +352,12 @@ body {
   padding: 0;
 }
 
-.lista-carrito .carrito-item {
+.carrito-item {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 40px;
-  margin-bottom: 20px;
+  margin: 50px 0;
 }
 
 .lista-carrito img {

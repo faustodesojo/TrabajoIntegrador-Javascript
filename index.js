@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <img src="${producto.cardImg}" alt="${producto.nombre}">
           <p>${producto.nombre}</p>
         </div>
-        <p>$${producto.precio}</p>
+        <p id="producto-precio">$${producto.precio}</p>
         <input type="number" class="cantidad" value="${producto.cantidad}" min="1">
         <p>$${subtotal}</p>
         <button class="eliminar"><i class="fa-regular fa-circle-xmark"></i></button>
