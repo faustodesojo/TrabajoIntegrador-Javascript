@@ -7,12 +7,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const botonSiguiente = document.getElementById("boton-siguiente");
   const botonAnterior = document.getElementById("boton-anterior");
   const closeButton = document.querySelector(".close-button");
+  const closeCarrito = document.querySelector(".close-carrito");
   const productosContainer = document.querySelector(".productos-container");
   const navbarLinks = document.querySelectorAll(".navbar-link a");
   const carritoToggle = document.querySelector(".cart");
   const carritoContainer = document.querySelector(".carrito");
   const agregarDescuento = document.querySelector(".descuento");
   const mensajeCarrito = document.getElementById("mensaje-carrito");
+  const comprarCarritoButton = document.getElementById("comprar-carrito");
+  const modal = document.getElementById("modal");
+  const confirmarCompraSiButton = document.getElementById(
+    "confirmar-compra-si"
+  );
+  const confirmarCompraNoButton = document.getElementById(
+    "confirmar-compra-no"
+  );
 
   mobileMenuToggle.addEventListener("click", () => {
     navList.classList.toggle("active");
@@ -123,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
   const openMenu = () => {
     navList.classList.add("active");
-    closeCarrito();
+    cerrarCarrito();
   };
 
   const closeMenu = () => {
@@ -132,10 +141,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const openCarrito = () => {
     carritoContainer.classList.add("open");
-    closeMenu();
+    cerrarMenu();
   };
 
-  const closeCarrito = () => {
+  const cerrarCarrito = () => {
     carritoContainer.classList.remove("open");
   };
 
@@ -143,13 +152,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (navList.classList.contains("active")) {
       openMenu();
     } else {
-      closeMenu();
+      cerrarMenu();
     }
   });
 
   carritoToggle.addEventListener("click", () => {
     if (carritoContainer.classList.contains("open")) {
-      closeCarrito();
+      cerrarCarrito();
     } else {
       openCarrito();
     }
@@ -163,6 +172,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   closeButton.addEventListener("click", () => {
     closeMenu();
+  });
+  closeCarrito.addEventListener("click", () => {
+    cerrarCarrito();
   });
 
   const eliminarProductoDelCarrito = (producto) => {
@@ -209,6 +221,34 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     totalCarrito.textContent = total;
+  };
+  comprarCarritoButton.addEventListener("click", () => {
+    modal.style.display = "block";
+  });
+  confirmarCompraSiButton.addEventListener("click", () => {
+    if (carrito.length === 0) {
+      alert("No hay productos en el carrito.");
+      return;
+    } else {
+      modal.style.display = "none";
+      alert("Compra realizada con éxito.");
+      vaciarCarritoModal();
+      vaciarCarritoLocalStorage();
+    }
+  });
+  const vaciarCarritoLocalStorage = () => {
+    localStorage.removeItem("carrito");
+  };
+
+  confirmarCompraNoButton.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  const vaciarCarritoModal = () => {
+    const listaCarrito = document.querySelector(".lista-carrito");
+    listaCarrito.innerHTML = "";
+    const totalElement = document.querySelector(".total");
+    totalElement.textContent = "0.00";
   };
 
   const agregarProductoAlCarrito = (nombre, precio, cardImg) => {
@@ -260,6 +300,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const mostrarProductos = () => {
     productosContainer.innerHTML = "";
 
+    for (let i = currentIndex; i < currentIndex + productosPorPagina; i += 2) {
+      if (i < cardsInfo.length) {
+        const producto1 = cardsInfo[i];
+        const card1 = crearCardProduct(producto1);
+        productosContainer.appendChild(card1);
+      }
+      if (i + 1 < cardsInfo.length) {
+        const producto2 = cardsInfo[i + 1];
+        const card2 = crearCardProduct(producto2);
+        productosContainer.appendChild(card2);
+      }
+    }
+  };
+  const botonVerMas = document.querySelector(".ver-mas");
+  const mostrarMasProductos = () => {
+    const productosPorPagina = 4;
     for (let i = currentIndex; i < currentIndex + productosPorPagina; i++) {
       if (i < cardsInfo.length) {
         const producto = cardsInfo[i];
@@ -267,7 +323,14 @@ document.addEventListener("DOMContentLoaded", () => {
         productosContainer.appendChild(card);
       }
     }
+    currentIndex += productosPorPagina;
+
+    if (currentIndex >= cardsInfo.length) {
+      botonVerMas.style.display = "none";
+    }
   };
+
+  botonVerMas.addEventListener("click", mostrarMasProductos);
 
   const crearCardProduct = (producto) => {
     const card = document.createElement("div");
@@ -309,10 +372,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 const expresiones = {
-  usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
+  usuario: /^[a-zA-Z0-9\_\-]{3,16}$/, // Letras, numeros, guion y guion_bajo
   nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-  password: /^.{4,12}$/, // 4 a 12 digitos.
-  correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+  // password: /^.{4,12}$/, // 4 a 12 digitos.
+  // correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
   telefono: /^\d{7,14}$/, // 7 a 14 numeros.
 };
 const validarCampos = (e) => {
@@ -324,6 +387,7 @@ const validarCampos = (e) => {
       validarFormulario(expresiones.nombre, e.target, "apellido");
       break;
     case "telefono":
+      validarFormulario(expresiones.telefono, e.target, "telefono");
       break;
   }
 };
@@ -337,12 +401,6 @@ const validarFormulario = (expresion, input, campo) => {
       .getElementById(`input__${campo}`)
       .classList.add("formulario-correcto");
     document
-      .querySelector(`#input__${campo} .formulario__validacion-estado`)
-      .classList.add("fa-check-circle");
-    document
-      .querySelector(`#input__${campo} .formulario__validacion-estado`)
-      .classList.remove("fa-times-circle");
-    document
       .querySelector(`#input__${campo} .formulario__error`)
       .classList.remove("formulario__error-activo");
     campos[campo] = true;
@@ -353,12 +411,6 @@ const validarFormulario = (expresion, input, campo) => {
     document
       .getElementById(`input__${campo}`)
       .classList.remove("formulario-correcto");
-    document
-      .querySelector(`#input__${campo} i`)
-      .classList.add("fa-times-circle");
-    document
-      .querySelector(`#input__${campo} i`)
-      .classList.remove("fa-check-circle");
     document
       .querySelector(`#input__${campo} .formulario__error`)
       .classList.add("formulario__error-activo");

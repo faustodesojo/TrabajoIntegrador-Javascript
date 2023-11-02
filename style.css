@@ -98,7 +98,7 @@ body {
 
 .hero-info h1 {
   font-size: 60px;
-  background-color: #33333386;
+  background-color: #333333cf;
   border-radius: 5px;
 }
 
@@ -159,19 +159,33 @@ body {
   transition: 0.5s all;
 }
 /* ABOUT Section */
-.about__banner {
-  display: flex;
-  justify-content: center;
-  align-items: end;
-  height: max-content;
-}
-.about__banner img {
-  width: 80%;
+#about {
   position: relative;
 }
-.about__banner .descuento {
+
+.about__banner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.about__banner img {
+  max-width: 100%;
+}
+.about-media {
+  display: none;
+}
+.agregar.descuento {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
   position: absolute;
-  margin-bottom: 25px;
+  bottom: 40px;
 }
 /* PRODUCTOS section */
 
@@ -286,7 +300,20 @@ body {
   justify-content: space-between;
   margin-bottom: 0.5rem;
 }
-
+.close-carrito {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  color: white;
+  background-color: black;
+  border-radius: 2rem;
+  padding: 0 6px;
+}
+.close-carrito:hover {
+  transition: all 0.5s;
+  transform: rotate(180deg);
+}
 #vaciar-carrito,
 #comprar-carrito {
   background-color: var(--violet);
@@ -295,6 +322,7 @@ body {
   padding: 0.5rem 1rem;
   cursor: pointer;
   font-weight: bold;
+  margin-bottom: 15px;
 }
 
 #vaciar-carrito:hover {
@@ -337,6 +365,60 @@ body {
   font-weight: bold;
   margin-top: 10px;
 }
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  overflow: hidden;
+}
+
+.modal-content {
+  background-color: #fff;
+  width: 300px;
+  margin: 10% auto;
+  padding: 20px;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.modal-content button {
+  padding: 10px 20px;
+  margin: 5px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#confirmar-compra-si {
+  background-color: #4caf50;
+  color: white;
+}
+
+#confirmar-compra-si:hover {
+  background-color: #45a049;
+}
+
+#confirmar-compra-no {
+  background-color: #f44336;
+  color: white;
+}
+
+#confirmar-compra-no:hover {
+  background-color: #d32f2f;
+}
+
 .producto-info {
   display: flex;
   width: 150px;
@@ -361,19 +443,24 @@ body {
   margin-top: 25px;
 }
 .product-title .separador {
-  width: 40vw;
+  width: 37vw;
   height: 1px;
   background-color: var(--violet);
   margin: 0 10px;
 }
+.ver-mas {
+  display: none;
+}
 /* CONTACT SECTION */
 #contact {
   margin: 0 auto;
-  width: 900px;
+  width: 690px;
+  padding: 0 50px;
   background-color: black;
   border-radius: 2em;
   margin-bottom: 50px;
   color: white;
+  text-align: center;
 }
 .contact__form input[type="number"]::-webkit-inner-spin-button,
 .contact__form input[type="number"]::-webkit-outer-spin-button {
@@ -443,9 +530,6 @@ body {
 .contact__text p {
   font-size: 16px;
 }
-#contact {
-  text-align: center;
-}
 .enviar {
   padding: 8px 8px;
   margin: 0 auto;
@@ -498,11 +582,6 @@ body {
 }
 #input__nombre {
   position: relative;
-}
-.formulario__validacion-estado {
-  position: absolute;
-  top: 4px;
-  right: 10px;
 }
 .formulario__grupos {
   width: 500px;

@@ -1,3 +1,12 @@
+@media (max-width: 1134px) {
+  .productos-container {
+    width: 700px;
+  }
+  .cards-container #boton-anterior,
+  .cards-container #boton-siguiente {
+    top: 400px;
+  }
+}
 @media (max-width: 768px) {
   .menu-toggle {
     display: flex;
@@ -15,7 +24,6 @@
     width: 100%;
     gap: 10px;
   }
-
   .navbar-list.active {
     display: flex;
   }
@@ -40,20 +48,66 @@
   }
   .productos-container {
     width: 100%;
-    height: 675px;
+    height: max-content;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
   }
-  .producto {
-    width: 150px;
-    height: 290px;
-  }
   .producto h2 {
     font-size: 16px;
   }
+  #contact {
+    width: 100%;
+  }
+  .formulario__grupos {
+    width: 80%;
+  }
+  .hero-container p {
+    font-size: 16px;
+  }
+  .about-img {
+    display: none;
+  }
+  .about-media {
+    display: block;
+  }
+  .descuento {
+    display: none;
+  }
+  .cards-container #boton-anterior,
+  .cards-container #boton-siguiente {
+    display: none;
+  }
+  #contact {
+    display: none;
+  }
+  .ver-mas {
+    display: flex;
+    position: relative;
+    height: 35px;
+    width: 80px;
+    cursor: pointer;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--violet);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  .cards-container {
+    flex-direction: column;
+    width: 700px;
+    align-items: center;
+  }
 }
 @media (max-width: 445px) {
+  .hero-info h1 {
+    font-size: 32px;
+  }
   .product-title .separador {
     width: 30vw;
   }
@@ -63,12 +117,8 @@
   .hero-container .separador {
     display: none;
   }
-  .about__banner img {
-    width: 100%;
-    height: 170px;
-  }
   .cards-container {
-    height: 1400px;
+    max-height: 7000px;
   }
   .cards-container #boton-anterior {
     border: 2px solid black;
@@ -79,13 +129,5 @@
     border: 2px solid black;
     height: 1400px;
     top: 0;
-  }
-  .contact__form {
-    padding-bottom: 20px;
-  }
-  .contact__form input,
-  .contact__form textarea,
-  .contact__form select {
-    width: 70%;
   }
 }

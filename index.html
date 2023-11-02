@@ -54,16 +54,28 @@
       <div class="carrito">
         <h2>Carrito de Compras</h2>
         <div class="lista-carrito"></div>
+        <div class="close-carrito">
+          <i class="fas fa-times"></i>
+        </div>
         <p>Total: $<span class="total">0.00</span></p>
         <button id="comprar-carrito">Comprar</button>
         <button id="vaciar-carrito">Vaciar Carrito</button>
       </div>
+      
+      <div id="modal" class="modal">
+        <div class="modal-content">
+          <p>Desea realizar la compra?</p>
+          <button id="confirmar-compra-si">Sí</button>
+          <button id="confirmar-compra-no">No</button>
+        </div>
+      </div>
+      
     </header>
     <main>
       <section id="hero">
         <div class="hero-info">
           <img src="assets/Desojo's.png" alt="Logo-local" />
-          <h1>¡Encontra tu bebidas favoritas al mejor precio!</h1>
+          <h1>¡Encontra tus bebidas favoritas al mejor precio!</h1>
           <p>
             En <span>Licoreria Desojo's</span> contamos con un amplio catalogo
             de bebidas importadas
@@ -91,7 +103,8 @@
       </section>
       <section id="about">
         <div class="about__banner">
-          <img src="assets/Descuento Rutini.png" alt="" />
+          <img class="about-img" src="assets/Descuento Rutini.png" alt="trumpeter" />
+          <a href="#productos"><img class="about-media" src="assets/aboutTrampeter.png" alt="trumpeter"></a>
           <button class="agregar descuento">Comprar</button>
         </div>
       </section>
@@ -113,6 +126,7 @@
           <button id="boton-siguiente">
         <i class="fa-solid fa-chevron-right"></i></i>
       </button>
+      <button class="ver-mas">Ver mas</button>
       <p id="mensaje-carrito" class="mensaje-carrito oculto"></p>
         </div>
       </section>
@@ -125,17 +139,16 @@
           <form id="formulario">
             <div class="formulario__grupos">
             <div class="formulario__grupo" id="input__nombre">
-                <input class="formulario__input" type="text" name="nombre" id="nombre" placeholder="Nombre" />
-                <i class="fas fa-times-circle formulario__validacion-estado"></i>
+                <input class="formulario__input" type="text" name="nombre" id="nombre" placeholder="Nombre" required />
                 <small class="formulario__error">Por favor introducir un nombre valido</small>
             </div>
 <div class="formulario__grupo"id="input__apellido">
-    <input class="formulario__input" type="text" name="apellido" id="apellido" placeholder="Apellido" />
-            <i class="fas fa-times-circle formulario__validacion-estado"></i>
+    <input class="formulario__input" type="text" name="apellido" id="apellido" placeholder="Apellido" required/>
                 <small class="formulario__error">Por favor introducir un apellido valido</small>
         </div>
-<div class="formulario__grupo">
-            <input class="formulario__input" type="number" name="telefono" id="telefono" placeholder="Numero telefonico" />
+<div class="formulario__grupo" id="input__telefono">
+            <input class="formulario__input" type="number" name="telefono" id="telefono" placeholder="Numero telefonico" required />
+            <small class="formulario__error">Por favor introducir un telefono existente</small>
             </div>
 <div class="formulario__grupo">
             <select name="consulta" id="consulta" place>
